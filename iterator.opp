@@ -1,0 +1,21 @@
+class Iterator is
+    var collection : Array[String]
+    var index : Integer(0)
+
+    this(collection: Array[String]) is
+        this.collection := collection
+    end
+
+    method hasNext() : Boolean is
+        return index.Less(collection.Length)
+    end
+
+    method next() : String is
+        if self.hasNext().Not() then
+            return ""
+        end
+        var result : String(collection.get(index))
+        index := index.Plus(1)
+        return result
+    end
+end
