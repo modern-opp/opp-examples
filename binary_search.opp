@@ -1,0 +1,31 @@
+class Main is
+    method main() is
+      var a : Array[Integer](5)
+      a.Set(0) := 1
+      a.Set(1) := 2
+      a.Set(2) := 3
+      a.Set(3) := 4
+      a.Set(4) := 5
+      print(binarySearch(a, 4))
+    end
+
+    method binarySearch(arr : Array[Integer], val : Integer) : Integer is
+      var l : Integer(0)
+      var r : Integer(a.Length)
+      var m : Integer(0)
+      while l.Less(r) loop
+        m := l.Plus(r).Div(2)
+        if a.Get(m).Equals(val) then
+         return m
+        end
+
+        if a.Get(m).Greater(val) then
+          l := m
+        else
+          r := m
+        end
+      end
+      
+      return -1
+    end
+end
