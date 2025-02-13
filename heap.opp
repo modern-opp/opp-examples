@@ -1,0 +1,85 @@
+class Heap is
+    var data : Array[Integer]
+    var size : Integer(0)
+
+    this(capacity: Integer) is
+        data := Array[Integer](capacity)
+    end
+
+    method parent(i: Integer) : Integer is
+        return i.Div(2)
+    end
+
+    method leftChild(i: Integer) : Integer is
+        return i.Mult(2)
+    end
+
+    method rightChild(i: Integer) : Integer is
+        return i.Mult(2).Plus(1)
+    end
+
+    method swap(i: Integer, j: Integer) is
+        var temp : Integer(data.get(i))
+        data.set(i, data.get(j))
+        data.set(j, temp)
+    end
+
+    method heapifyUp(i: Integer) is
+        var parentIndex : Integer(self.parent(i))
+        while i.Greater(0) and data.get(parentIndex).Less(data.get(i)) loop
+            swap(i, parentIndex)
+            i := parentIndex
+            parentIndex := self.parent(i)
+        end
+    end
+
+    method heapifyDown(i: Integer) is
+        var largest : Integer(i)
+        var left : Integer(self.leftChild(i))
+        var right : Integer(self.rightChild(i))
+
+        if left.Less(size) and data.get(left).Greater(data.get(largest)) then
+            largest := left
+        end
+
+        if right.Less(size) and data.get(right).Greater(data.get(largest)) then
+            largest := right
+        end
+
+        if largest.NotEqual(i) then
+            swap(i, largest)
+            heapifyDown(largest)
+        end
+    end
+
+    method insert(value: Integer) is
+        if size.Equal(data.Length) then
+            return  // Куча переполнена
+        end
+        data.set(size, value)
+        size := size.Plus(1)
+        heapifyUp(size.Minus(1))
+    end
+
+    method extractMax() : Integer is
+        if size.Equal(0) then
+            return Integer.Min  // Куча пуста
+        end
+        var maxValue : Integer(data.get(0))
+        data.set(0, data.get(size.Minus(1)))
+        size := size.Minus(1)
+        heapifyDown(0)
+        return maxValue
+    end
+
+    method getMax() : Integer is
+        if size.Equal(0) then
+            return Integer.Min  // Куча пуста
+        end
+        return data.get(0)
+    end
+
+    method isEmpty() : Boolean is
+        return size.Equal(0)
+    end
+end
