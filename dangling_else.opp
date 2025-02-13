@@ -1,0 +1,11 @@
+class Main is
+    method main() is
+      if true then
+        if false then
+          print('never')
+        else
+          print('Expect false')
+        end
+      end
+    end
+end
