@@ -1,0 +1,114 @@
+class Pair is
+    var key : String
+    var value : String
+
+    this(key: String, value: String) is
+        this.key := key
+        this.value := value
+    end
+end
+
+
+class HashMap is
+    var buckets : Array[List[Pair]]
+    var size : Integer(0)
+    var capacity : Integer(16)  // Начальная емкость
+
+    this() is
+        buckets := Array[List[Pair]](capacity)
+        var i : Integer(0)
+        while i.Less(capacity) loop
+            buckets.set(i, List[Pair]())
+            i := i.Plus(1)
+        end
+    end
+
+    method hash(key: String) : Integer is
+        var hash : Integer(0)
+        var i : Integer(0)
+        while i.Less(key.Length) loop
+            hash := hash.Plus(key.get(i).toInteger())
+            i := i.Plus(1)
+        end
+        return hash.Mod(capacity)
+    end
+
+    method put(key: String, value: String) is
+        var index : Integer(self.hash(key))
+        var bucket : List[Pair](buckets.get(index))
+        var pair : Pair(key, value)
+
+        var i : Integer(0)
+        var found : Boolean(false)
+        while i.Less(bucket.Length) loop
+            if bucket.get(i).key.Equal(key) then
+                bucket.set(i, pair)
+                found := true
+            end
+            i := i.Plus(1)
+        end
+
+        if found.Not() then
+            bucket.append(pair)
+            size := size.Plus(1)
+        end
+
+        buckets.set(index, bucket)
+    end
+
+    method get(key: String) : String is
+        var index : Integer(self.hash(key))
+        var bucket : List[Pair](buckets.get(index))
+
+        var i : Integer(0)
+        while i.Less(bucket.Length) loop
+            if bucket.get(i).key.Equal(key) then
+                return bucket.get(i).value
+            end
+            i := i.Plus(1)
+        end
+
+        return "null"  // Если ключ не найден
+    end
+
+    method remove(key: String) : Boolean is
+        var index : Integer(self.hash(key))
+        var bucket : List[Pair](buckets.get(index))
+
+        var i : Integer(0)
+        while i.Less(bucket.Length) loop
+            if bucket.get(i).key.Equal(key) then
+                bucket.remove(i)
+                size := size.Minus(1)
+                buckets.set(index, bucket)
+                return true
+            end
+            i := i.Plus(1)
+        end
+
+        return false  // Если ключ не найден
+    end
+
+    method containsKey(key: String) : Boolean is
+        var index : Integer(self.hash(key))
+        var bucket : List[Pair](buckets.get(index))
+
+        var i : Integer(0)
+        while i.Less(bucket.Length) loop
+            if bucket.get(i).key.Equal(key) then
+                return true
+            end
+            i := i.Plus(1)
+        end
+
+        return false
+    end
+
+    method size() : Integer is
+        return size
+    end
+
+    method isEmpty() : Boolean is
+        return size.Equal(0)
+    end
+end
