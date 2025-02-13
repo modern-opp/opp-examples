@@ -1,0 +1,23 @@
+class Component is
+    method operation() : String is
+        return "Default operation"
+    end
+end
+
+class ConcreteComponent extends Component is
+    method operation() : String is
+        return "ConcreteComponent operation"
+    end
+end
+
+class Decorator extends Component is
+    var component : Component
+
+    this(component: Component) is
+        this.component := component
+    end
+
+    method operation() : String is
+        return component.operation()
+    end
+end
