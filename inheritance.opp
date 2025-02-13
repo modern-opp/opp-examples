@@ -1,13 +1,7 @@
 class Animal is
-    var name : String("Unknown")
+    method makeSound() : String
 
-    method makeSound() : String is
-        return "Some generic animal sound"
-    end
-
-    method move() : String is
-        return "Moving..."
-    end
+    method move() : String
 end
 
 class Bird extends Animal is
