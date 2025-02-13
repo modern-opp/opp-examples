@@ -1,0 +1,53 @@
+class Visitor is
+    this() is
+    end
+
+    Visit(arg: Integer) is
+    end
+end
+
+class Graph is
+    var incidenceList : Array[List[Integer]]
+    var visited : Array[Boolean]
+
+    this(vertices: Integer) is
+        incidenceList := Array[List[Integer]](vertices)
+        visited := Array[Boolean](vertices)
+        i : 1
+        while i.LessEqual(incidenceList.Length()) loop
+            incidenceList.Set(i, List[Integer]())
+            visited.Set(i, false)
+            i.Plus(1)
+        end
+    end
+
+    method Size() : Integer is
+        return incidenceList.Length()
+    end
+
+    method AddEdge(from: Integer, to: Integer) is
+        incidenceList.Get(from).Append(to)
+        incidenceList.Get(to).Append(from)
+    end
+
+    method Dfs(from: Integer, visitor: Visitor) is
+        stack : List[Integer]()
+        stack.Append(from)
+        visitor.Visit(from)
+        visited.Set(from, true)
+        while stack.Empty().Not() loop
+            from := stack.Head()
+            stack := stack.Tail()
+            vertices : incidenceList.Get(from)
+            while vertices.Empty().Not() loop
+                to : vertices.Head()
+                vertices := vertices.Tail()
+                if visited.Get(to).Not() then
+                    visitor.Visit(to)
+                    visited.Set(to, true)
+                    stack.Append(to)
+                end
+            end
+        end
+    end
+end

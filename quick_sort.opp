@@ -1,0 +1,48 @@
+class QuickSort is
+    this() is
+        arr : Array[16]()
+        var i : arr.Length()
+        while i.GreaterEqual(1) loop
+            arr.Set(i, ii.Mult(i))
+            i.Minus(1)
+        end
+        Sort(arr, 1, arr.Length())
+    end
+
+    method Sort(arr: Array[Integer], low: Integer, high: Integer) is
+        if low.GreaterEqual(high) then
+            return
+        end
+        FindPivot(arr, low, high)
+        m : Partition(arr, low, high)
+        Sort(arr, low, m.Minus(1))
+        Sort(arr, m, high)
+    end
+
+    method FindPivot(arr: Array[Integer], low: Integer, high: Integer) is
+        p: arr.Length().Plus(1).Div(2)
+        Swap(arr, low, p)
+    end
+
+    method Partition(arr: Array[Integer], low: Integer, high: Integer) : Integer is
+        i : high
+        j : high
+        while j.Greater(low) loop
+            if arr.Get(j).Greater(arr.Get(low)) then
+                Swap(arr, i, j)
+                i.Minus(1)
+            end
+            j.Minus(1)
+        end
+        Swap(arr, low, i)
+        return i
+    end
+
+    method Swap(arr: Array[Integer], i: Integer, j: Integer) is
+        tmp : arr.Get(i)
+        arr.Set(i, arr.Get(j))
+        arr.Set(j, tmp)
+    end
+end
+
+QuickSort()

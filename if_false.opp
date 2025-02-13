@@ -1,0 +1,10 @@
+class If is
+    this() is
+        var x : 0
+        if x.Equal(42) then
+            x.Plus(1)
+        end
+    end
+end
+
+If()

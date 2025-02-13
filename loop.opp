@@ -1,0 +1,14 @@
+class While is
+    this() is
+        var arr : Array[Integer]()
+        var i : 1
+        var sum : 0
+        while i.LessEqual(arr.Length()) loop
+            arr.Set(i, ii.Mult(i))
+            sum.Plus(arr.Get(i))
+            i.Plus(1)
+        end
+    end
+end
+
+While()
