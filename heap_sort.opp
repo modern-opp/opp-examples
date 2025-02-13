@@ -1,0 +1,41 @@
+class HeapSort is
+    method buildHeap(arr: Array[Integer], n: Integer) is
+        var i : Integer(n.Div(2).Minus(1))
+        while i.GreaterEqual(0) loop
+            heapifyDown(arr, n, i)
+            i := i.Minus(1)
+        end
+    end
+
+    method heapifyDown(arr: Array[Integer], n: Integer, i: Integer) is
+        var largest : Integer(i)
+        var left : Integer(i.Mult(2).Plus(1))
+        var right : Integer(i.Mult(2).Plus(2))
+
+        if left.Less(n) and arr.get(left).Greater(arr.get(largest)) then
+            largest := left
+        end
+
+        if right.Less(n) and arr.get(right).Greater(arr.get(largest)) then
+            largest := right
+        end
+
+        if largest.NotEqual(i) then
+            arr.swap(i, largest)
+            heapifyDown(arr, n, largest)
+        end
+    end
+
+    method sort(arr: Array[Integer]) is
+        var n : Integer(arr.Length)
+        buildHeap(arr, n)
+
+        var i : Integer(n.Minus(1))
+        while i.Greater(0) loop
+            arr.swap(0, i)
+            n := n.Minus(1)
+            heapifyDown(arr, n, 0)
+            i := i.Minus(1)
+        end
+    end
+end
