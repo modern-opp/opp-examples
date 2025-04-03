@@ -23,3 +23,5 @@ class Eagle extends Bird is
         return "Hunting..."
     end
 end
+
+Eagle().makeSound()

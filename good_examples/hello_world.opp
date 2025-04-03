@@ -3,3 +3,5 @@ class Main is
       print('Hello world')
     end
 end
+
+Main().main()

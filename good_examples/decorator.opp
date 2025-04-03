@@ -21,3 +21,5 @@ class Decorator extends Component is
         return component.operation()
     end
 end
+
+Decorator(ConcreteComponent()).operation()
