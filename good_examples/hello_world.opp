@@ -4,4 +4,4 @@ class Main is
     end
 end
 
-Main().main()
+Main()

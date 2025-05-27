@@ -1,0 +1,7 @@
+class Animal extends Animal is
+    method makeSound() : String
+
+    method move() : String
+end
+
+Animal()

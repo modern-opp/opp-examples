@@ -1,0 +1,6 @@
+class Animal is
+   var i : 10
+   var i : 11
+end
+
+Animal()

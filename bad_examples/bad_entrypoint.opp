@@ -1,0 +1,7 @@
+class Animal is
+    method makeSound() : String
+
+    method move() : String
+end
+
+11

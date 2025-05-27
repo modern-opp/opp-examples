@@ -1,0 +1,15 @@
+class Main is
+    method main() is
+      var i : 10
+      var i : 11
+      if true then
+        if false then
+          print('never')
+        else
+          print('Expect false')
+        end
+      end
+    end
+end
+
+Main().main()

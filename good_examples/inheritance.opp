@@ -6,22 +6,22 @@ end
 
 class Bird extends Animal is
     method makeSound() : String is
-        return "Chirp!"
+        return 'Chirp!'
     end
 
     method fly() : String is
-        return "Flying..."
+        return 'Flying...'
     end
 end
 
 class Eagle extends Bird is
     method makeSound() : String is
-        return "Screech!"
+        return 'Screech!'
     end
 
     method hunt() : String is
-        return "Hunting..."
+        return 'Hunting...'
     end
 end
 
-Eagle().makeSound()
+Eagle()

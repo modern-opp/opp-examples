@@ -1,0 +1,23 @@
+class Animal is
+    var a : 1
+    this() is move() end
+    method move() : String
+end
+
+class Bird extends Animal is
+    var a : 41.7
+    method move() : String is
+        var i : 1
+        var j : 11
+        if 100 then
+           return 'Ops!'
+        end
+        while false loop
+            i := false
+        end
+        sdfsdfdsafsdf
+        move(10)
+    end
+end
+
+Animal()

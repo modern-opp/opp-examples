@@ -1,0 +1,14 @@
+class Main is
+    this() is end
+    method main() : String is
+      if true then
+        if false then
+          return 'never'
+        else
+          return 'Expect false'
+        end
+      end
+    end
+end
+
+Main()

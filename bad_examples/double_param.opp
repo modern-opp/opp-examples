@@ -1,0 +1,9 @@
+class Animal is
+   var i : 10
+   var i : 11
+    method makeSound(a: Integer, a: Integer) : String is
+        return "dsds"
+    end
+end
+
+Animal()
